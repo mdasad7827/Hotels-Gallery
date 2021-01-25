@@ -35,7 +35,11 @@ const Slider = ({ photos }) => {
         key={idx}
       >
         <img
-          src={item.m}
+          src={
+            item.m
+              ? item.m
+              : "https://i.pinimg.com/originals/10/b2/f6/10b2f6d95195994fca386842dae53bb2.png"
+          }
           width="100%"
           style={{ height: "280px" }}
           alt="hotel"

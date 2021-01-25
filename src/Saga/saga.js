@@ -3,7 +3,14 @@ import { fetchData } from "../Store";
 import { sagaActions } from "./sagaAction";
 
 const callAPI = async (url) => {
-  return await fetch(url).then((r) => r.json());
+  // return await fetch(url).then((r) => r.json());
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+  } catch (e) {
+    console.log("Unable to fetch", e);
+  }
 };
 
 export function* fetchDataSaga() {
