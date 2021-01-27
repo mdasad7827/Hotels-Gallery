@@ -1,5 +1,4 @@
 import { Container } from "reactstrap";
-import "./App.css";
 import Gallery from "./Gallery";
 
 function App() {

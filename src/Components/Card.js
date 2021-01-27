@@ -21,7 +21,10 @@ export default function MyCard({ details, provider, price, location, photos }) {
         <CardText>
           <b>Price:</b> {`${price.total} ${price.currency}`}
           <br />
-          <b>Area:</b> {`${details.area.value} ${details.area.unit}`}
+          <b>Area:</b>{" "}
+          {`${details.area ? details.area.value : "N/A"} ${
+            details.area ? details.area.unit : ""
+          }`}
           <br />
           <b>Location:</b> {`${location.name} `}
           <br />

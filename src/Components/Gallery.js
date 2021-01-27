@@ -13,9 +13,7 @@ export default function Gallery() {
   }, [dispatch]);
 
   const myData = useSelector(getData);
-  if (myData) {
-    console.log(myData);
-  }
+  // console.log(myData);
 
   return (
     <>
@@ -32,31 +30,34 @@ export default function Gallery() {
         </Col>
       </Row>
       <Row>
-        {myData ? (
-          myData.data.map((item, idx) => {
-            return (
-              <Col key={idx} md="4" className="mb-3 mt-3">
-                <Card
-                  details={item.details}
-                  id={item.id}
-                  price={item.price}
-                  photos={item.photos}
-                  location={item.location}
-                  provider={item.provider}
-                />
-              </Col>
-            );
-          })
-        ) : (
-          <Col
-            style={{ textAlign: "center", padding: "200px", height: "580px" }}
-          >
+        {myData.data.loading ? (
+          <Col style={{ textAlign: "center", padding: "50px" }}>
             <Spinner
               color="primary"
               style={{ width: "3rem", height: "3rem" }}
             />
           </Col>
-        )}
+        ) : myData.data.error ? (
+          <Col style={{ textAlign: "center", padding: "20px" }}>
+            <h5 style={{ color: "red" }}> {`OOPS! ${myData.data.error}`}</h5>
+          </Col>
+        ) : null}
+        {myData.data.data
+          ? myData.data.data.map((item, idx) => {
+              return (
+                <Col key={idx} md="4" className="mb-3 mt-3">
+                  <Card
+                    details={item.details}
+                    id={item.id}
+                    price={item.price}
+                    photos={item.photos}
+                    location={item.location}
+                    provider={item.provider}
+                  />
+                </Col>
+              );
+            })
+          : null}
       </Row>
     </>
   );
